@@ -1,11 +1,13 @@
 package com.manula.Starlink;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+@Service
 public class SatelliteService {
 
     @Autowired
@@ -21,10 +23,10 @@ public class SatelliteService {
         //return topics;
 
         //CRUD ops
-        List<Satellite> satellites = new ArrayList<>();
+        List<Satellite> satellite = new ArrayList<>();
         satelliteRepository.findAll()
-                .forEach(satellites::add);
-        return satellites;
+                .forEach(satellite::add);
+        return satellite;
     }
 
     public Satellite getSatellite(String id){

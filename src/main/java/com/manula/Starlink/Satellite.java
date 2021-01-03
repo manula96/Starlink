@@ -1,7 +1,9 @@
 package com.manula.Starlink;
 
+import javax.persistence.Entity;
 import javax.persistence.Id;
 
+@Entity
 public class Satellite {
     @Id
     private String id;

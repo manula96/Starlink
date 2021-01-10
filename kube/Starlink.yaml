@@ -1,18 +1,4 @@
-# ... Service YAML definition
-apiVersion: v1
-kind: Service
-metadata:
-  name: starlink
-spec:
-  selector:
-    app: starlink
-  ports:
-    - port: 80
-      targetPort: 3000
-  type: LoadBalancer
-
----
-  # ... Deployment YAML definition
+#... Deployment YAML definition
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -29,7 +15,20 @@ spec:
     spec:
       containers:
         - name: app
-          image: f26ea4e3b597/starlink:1.0.0
+          image: donmanula/starlink:1.0.0
           ports:
             - containerPort: 3000
           imagePullPolicy: Always
+---
+# ... Service YAML definition
+apiVersion: v1
+kind: Service
+metadata:
+  name: starlink
+spec:
+  selector:
+    app: starlink
+  ports:
+    - port: 80
+      targetPort: 3000
+  type: LoadBalancer

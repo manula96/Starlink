@@ -12,23 +12,23 @@ public class SatelliteController {
     @Autowired // CONNECTION TO Satellite service. Marks as it requires the Satellite service dependency
     private SatelliteService satelliteService;
 
-    @RequestMapping("/Satellites")
+    @RequestMapping("/satellite")
     public List<Satellite> getAllSatellites(){
         return satelliteService.getAllSatellites();
     }
 
-    @RequestMapping("/Satellites/{id}")
+    @RequestMapping("/satellite/{id}")
     public Satellite getSatellite(@PathVariable String id) {
         return satelliteService.getSatellite(id);
     }
 
-    @RequestMapping(method = RequestMethod.POST, value="/Satellites")
+    @RequestMapping(method = RequestMethod.POST, value="/addsatellite")
     public void addSatellite(@RequestBody Satellite satellite) {
         satelliteService.addSatellite(satellite);
     }
 
 
-    @RequestMapping(method = RequestMethod.PUT, value="/Satellites/{id}")
+    @RequestMapping(method = RequestMethod.PUT, value="/updatesatellite/{id}")
     public void updateConstellation(@RequestBody Satellite satellite, @PathVariable String id){
         satelliteService.updateSatellite(id, satellite);
 

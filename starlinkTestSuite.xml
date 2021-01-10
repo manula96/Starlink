@@ -1,0 +1,8 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="Starlink-Test-Suite" >
+    <test name="StarlinkUnitTest" >
+        <classes>
+            <class name="com.manula.Starlink.starlinkUnitTest" />
+        </classes>
+    </test>
+</suite>

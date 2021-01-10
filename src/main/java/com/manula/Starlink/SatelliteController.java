@@ -35,7 +35,7 @@ public class SatelliteController {
 
     }
 
-    @RequestMapping(method = RequestMethod.DELETE, value="/Satellites/{id}")
+    @RequestMapping(method = RequestMethod.DELETE, value="/deletesatellite/{id}")
     public void deleteSatellite(@PathVariable String id){
         satelliteService.deleteSatellite(id);
 

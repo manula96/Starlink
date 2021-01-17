@@ -31,7 +31,7 @@ pipeline {
      steps{
          script {
             bat 'docker login'
-            docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
+            docker.withRegistry('registry', 'dockerhub') {
             dockerImage.push()
             }
         }

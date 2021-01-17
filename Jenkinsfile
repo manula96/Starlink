@@ -50,8 +50,8 @@ pipeline {
                     configs: 'Starlink.yaml',
                     kubeconfigId: 'mykubeconfig',
                     enableConfigSubstitution: true
-                    bat 'kubectl apply -f kube'
                     )
+                bat 'kubectl apply -f kube'
 
             }
         }

@@ -13,7 +13,7 @@ pipeline {
 
         stage ('checkout') {
             steps {
-            checkout([$class: 'GitSCM', branches: [[name: '*/dev']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/manula96/Starlink']]])
+            checkout([$class: 'GitSCM', branches: [[name: '*/dev']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/manula96/Starlink:${env.BUILD_ID}']]])
             }
         }
 
@@ -21,7 +21,7 @@ pipeline {
             steps {
                 script {
                 bat 'mvn clean install -DstarlinkTestSuite'
-                dockerImage = docker.build registry
+                Starlink = docker.build("manula96/Starlink:${env.BUILD_ID}")
                 }
             }
         }
@@ -31,7 +31,8 @@ pipeline {
      steps{
          script {
             docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
-            dockerImage.push()
+            Starlink.push("latest")
+            Starlink.push("${env.BUILD_ID}")
             }
         }
       }

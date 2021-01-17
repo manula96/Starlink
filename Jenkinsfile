@@ -6,7 +6,7 @@ pipeline {
        //once you sign up for Docker hub, use that user_id here
        registry = "manula96/starlink"
        //- update your credentials ID after creating credentials for connecting to Docker Hub
-       //registryCredential = 'dockerhub'
+       registryCredential = 'dockerhub'
        dockerImage = ''
     }
     stages {
@@ -21,7 +21,7 @@ pipeline {
             steps {
                 script {
                 bat 'mvn clean install -DstarlinkTestSuite'
-                Starlink = docker.build("manula96/Starlink:${env.BUILD_ID}")
+                dockerImage = docker.build registry
                 }
             }
         }
@@ -30,9 +30,9 @@ pipeline {
     stage('Upload Image') {
      steps{
          script {
+            bat 'docker login'
             docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
-            Starlink.push("latest")
-            Starlink.push("${env.BUILD_ID}")
+            dockerImage.push()
             }
         }
       }

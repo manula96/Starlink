@@ -17,10 +17,16 @@ pipeline {
             }
         }
 
-        stage ('Build docker image') {
+        stage ('Run Test Suite') {
             steps {
                 script {
                 bat 'mvn clean install -DstarlinkTestSuite'
+                }
+            }
+
+        }stage ('Build docker image') {
+            steps {
+                script {
                 dockerImage = docker.build registry
                 }
             }
@@ -30,7 +36,6 @@ pipeline {
     stage('Upload Image') {
      steps{
          script {
-            bat 'docker login'
             docker.withRegistry('', 'dockerhub') {
             dockerImage.push()
             }
@@ -45,6 +50,7 @@ pipeline {
                     configs: 'Starlink.yaml',
                     kubeconfigId: 'mykubeconfig',
                     enableConfigSubstitution: true
+                    bat 'kubectl apply -f kube'
                     )
 
             }

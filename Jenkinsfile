@@ -4,7 +4,7 @@ pipeline {
     }
        environment {
        //once you sign up for Docker hub, use that user_id here
-       registry = "manula96/Starlink"
+       registry = "manula96/starlink"
        //- update your credentials ID after creating credentials for connecting to Docker Hub
        registryCredential = 'dockerhub'
        dockerImage = ''

@@ -23,8 +23,9 @@ pipeline {
                 bat 'mvn clean install -DstarlinkTestSuite'
                 }
             }
+        }
 
-        }stage ('Build docker image') {
+        stage ('Build docker image') {
             steps {
                 script {
                 dockerImage = docker.build registry
@@ -33,29 +34,29 @@ pipeline {
         }
 
          // Uploading Docker images into Docker Hub
-    stage('Upload Image') {
-     steps{
-         script {
-            docker.withRegistry('', 'dockerhub') {
-            dockerImage.push()
+        stage('Upload Image') {
+         steps{
+             script {
+                docker.withRegistry('', 'dockerhub') {
+                dockerImage.push()
+                }
+            }
+          }
+        }
+
+        stage ('K8S Deploy') {
+            steps {
+                script {
+                    kubernetesDeploy(
+                        configs: 'Starlink.yaml',
+                        kubeconfigId: 'mykubeconfig',
+                        enableConfigSubstitution: true
+                        )
+                    bat 'kubectl apply -f kube'
+
+                }
             }
         }
-      }
-    }
-
-    stage ('K8S Deploy') {
-        steps {
-            script {
-                kubernetesDeploy(
-                    configs: 'Starlink.yaml',
-                    kubeconfigId: 'mykubeconfig',
-                    enableConfigSubstitution: true
-                    )
-                bat 'kubectl apply -f kube'
-
-            }
-        }
-    }
 
     }
 }

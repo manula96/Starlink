@@ -20,6 +20,7 @@ pipeline {
         stage ('Build docker image') {
             steps {
                 script {
+                bat 'mvn -DstarlinkTestSuite'
                 dockerImage = docker.build registry
                 }
             }

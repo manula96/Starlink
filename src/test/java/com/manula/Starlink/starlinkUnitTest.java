@@ -16,13 +16,6 @@ public class starlinkUnitTest {
 
     @Test (priority=1)
     public void validateInsertSatellite(){
-//        given().when().post("http://localhost:80/addsatellite").then().statusCode(200);
-//
-//        with().body(new Satellite(satID, "TEST Constellation", "TEST Orbit", "TEST Health"))
-//                .when()
-//                .request("POST", "http://localhost:80/Satellites")
-//                .then()
-//                .statusCode(200);
 
         RestAssured.baseURI = "http://localhost:3000";
         given().urlEncodingEnabled(false)
@@ -80,7 +73,8 @@ public class starlinkUnitTest {
     public void validateUpdateSatellite(){
         //given().when().post("http://localhost:80/addsatellite").then().statusCode(200);
 
-        with().body(new Satellite(satID, "TEST UPDATE Constellation", "TEST UPDATE Orbit", "TEST UPDATE Health"))
+        with().body(new Satellite(satID, "TEST UPDATE Constellation",
+                "TEST UPDATE Orbit", "TEST UPDATE Health"))
                 .when()
                 .contentType(ContentType.JSON)
                 .request("PUT", "http://localhost:3000/updatesatellite/"+satID)
@@ -90,12 +84,14 @@ public class starlinkUnitTest {
 
     @Test(priority=3)
     public void validateSelectAll(){
-        given().when().get("http://localhost:3000/satellite").then().statusCode(200);
+        given().when().get("http://localhost:3000/satellite").
+                then().statusCode(200);
     }
 
     @Test (priority=4)
     public void validateDeleteSatellite(){
-        given().when().delete("http://localhost:3000/deletesatellite/"+satID).then().statusCode(200);
+        given().when().delete("http://localhost:3000/deletesatellite/"+satID)
+                .then().statusCode(200);
     }
 
 

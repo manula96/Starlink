@@ -22,7 +22,6 @@ public class Satellite {
         this.health = health;
     }
 
-
     //Getters and Setters
 
 

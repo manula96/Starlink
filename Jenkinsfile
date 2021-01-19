@@ -48,7 +48,7 @@ pipeline {
             steps {
                 script {
                     kubernetesDeploy(
-                        configs: 'Starlink.yaml',
+                        configs: 'kube\Starlink.yaml',
                         kubeconfigId: 'mykubeconfig',
                         enableConfigSubstitution: true
                         )

@@ -13,11 +13,6 @@ public class SatelliteService {
     @Autowired
     private SatelliteRepository satelliteRepository;
 
-//    private List<Satellite> satellite = new ArrayList<>(Arrays.asList(
-//            new Topic("Lunar","framework","description"),
-//            new Topic("Mars","python framework"," python description"),
-//            new Topic("java","java framework"," java description")
-//    ));
 
     public List<Satellite> getAllSatellites(){
         //return topics;
@@ -43,13 +38,7 @@ public class SatelliteService {
 
 
     public void updateSatellite(String id, Satellite satellite){
-//            for (int i=0; i<topics.size(); i++){
-//                Topic t = topics.get(i);
-//                if (t.getId().equals(id)){
-//                    topics.set(i,topic);
-//                    return;
-//                }
-//            }
+
         satelliteRepository.save(satellite);
     }
 

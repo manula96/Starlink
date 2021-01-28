@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: app
-          image: donmanula/starlink:2.0.0
+          image: donmanula/starlink:latest
           ports:
             - containerPort: 3000
           imagePullPolicy: Always

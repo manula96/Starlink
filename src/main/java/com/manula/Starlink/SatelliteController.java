@@ -12,7 +12,7 @@ public class SatelliteController {
     @Autowired // CONNECTION TO Satellite service. Marks as it requires the Satellite service dependency
     private SatelliteService satelliteService;
 
-    @RequestMapping("/satellite")
+    @RequestMapping("/satellites")
     public List<Satellite> getAllSatellites(){
         return satelliteService.getAllSatellites();
     }
